@@ -1,6 +1,7 @@
 clusterid: wrong
 cloudregion: wrong
 role: wrong
+amiid: wrong
 
 openshift_cluster_content:
 - object: Cluster Autoscaling
@@ -37,6 +38,7 @@ openshift_cluster_content:
   - name: "MachineAutoscaler zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml" 
     params_from_vars:
+      AMI_ID: "{{ amiid }}"
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
@@ -45,6 +47,7 @@ openshift_cluster_content:
   - name: "MachineAutoscaler zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
+      AMI_ID: "{{ amiid }}"
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
@@ -53,6 +56,7 @@ openshift_cluster_content:
   - name: "MachineAutoscaler zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
+      AMI_ID: "{{ amiid }}"
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"

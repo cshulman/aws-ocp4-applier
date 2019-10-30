@@ -12,6 +12,6 @@ cloud_region=$(oc get machinesets -n openshift-machine-api -o jsonpath='{.items[
 #hard coding for the test
 
 # Run applier
-ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role="infra" -vvv
+ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role="infra" -e amiid="ami-0bc59aaa7363b805d" -vvv
 
 
