@@ -1,5 +1,6 @@
 clusterid: wrong
 cloudregion: wrong
+role: wrong
 
 openshift_cluster_content:
 - object: Cluster Autoscaling
@@ -31,5 +32,31 @@ openshift_cluster_content:
       params_from_vars:
         HTPASSWD_PROVIDER: my_htpasswd_provider
         HTPASSWD_SECRET: htpass-secret
+- object: Custom Machinesets
+  content:
+  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    template: "{{ inventory_dir }}/../templates/machineset.yaml" 
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION: "{{ cloudregion }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}a"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
+  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    template: "{{ inventory_dir }}/../templates/machineset.yaml"
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION: "{{ cloudregion }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}b"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
+  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    template: "{{ inventory_dir }}/../templates/machineset.yaml"
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION: "{{ cloudregion }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}c"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
 
 
