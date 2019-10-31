@@ -5,7 +5,7 @@ objects:
 - apiVersion: "autoscaling.openshift.io/v1beta1"
   kind: "MachineAutoscaler"
   metadata:
-    name: "worker-${CLOUD_REGION_ZONE}"
+    name: "${ROLE}-${CLOUD_REGION_ZONE}"
     namespace: openshift-machine-api
   spec:
     minReplicas: 1
@@ -13,7 +13,7 @@ objects:
     scaleTargetRef:
       apiVersion: machine.openshift.io/v1beta1
       kind: MachineSet
-      name: ${CLUSTER_ID}-worker-${CLOUD_REGION_ZONE}
+      name: ${CLUSTER_ID}-${ROLE}-${CLOUD_REGION_ZONE}
 parameters:
 - name: CLUSTER_ID
   description: "Example Value - mycluster-dev-x85t8"
@@ -21,4 +21,7 @@ parameters:
 - name: CLOUD_REGION_ZONE
   description: "Example Value - us-east-1a"
   required: true
-
+- name: ROLE
+  description: "Role of Machineset applying autoscaling to. Example Value - worker"
+  required: true
+                 

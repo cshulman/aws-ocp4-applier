@@ -4,38 +4,9 @@ role: wrong
 amiid: wrong
 
 openshift_cluster_content:
-- object: Cluster Autoscaling
-  content:
-  - name: ClusterAutoscaler
-    file: "{{ inventory_dir }}/../manifests/clusterautoscaler.yaml"
-  - name: "MachineAutoscaler zone {{ cloudregion }}a"
-    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
-    params_from_vars:
-      CLUSTER_ID: "{{ clusterid }}"
-      CLOUD_REGION_ZONE: "{{ cloudregion }}a"
-    namespace: openshift-machine-api
-  - name: "MachineAutoscaler zone {{ cloudregion }}b"
-    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
-    params_from_vars:
-      CLUSTER_ID: "{{ clusterid }}"
-      CLOUD_REGION_ZONE: "{{ cloudregion }}b"
-    namespace: openshift-machine-api
-  - name: "MachineAutoscaler zone {{ cloudregion }}c"
-    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
-    params_from_vars:
-      CLUSTER_ID: "{{ clusterid }}"
-      CLOUD_REGION_ZONE: "{{ cloudregion }}c"
-    namespace: openshift-machine-api
-- object: Htpasswd
-  content:
-    - name: Oauth
-      template: "{{ inventory_dir }}/../templates/htprovider.yaml"
-      params_from_vars:
-        HTPASSWD_PROVIDER: my_htpasswd_provider
-        HTPASSWD_SECRET: htpass-secret
 - object: Custom Machinesets
   content:
-  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+  - name: "MachineSet {{ role }} zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml" 
     params_from_vars:
       AMI_ID: "{{ amiid }}"
@@ -44,7 +15,9 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
       ROLE: "{{ role }}"
     namespace: openshift-machine-api
-  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    tags:
+    - machinesets
+  - name: "MachineSet {{ role }} zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
       AMI_ID: "{{ amiid }}"
@@ -53,7 +26,9 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
       ROLE: "{{ role }}"
     namespace: openshift-machine-api
-  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    tags:
+    - machinesets
+  - name: "MachineSet {{ role }} zone {{ cloudregion }}a"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
       AMI_ID: "{{ amiid }}"
@@ -62,5 +37,48 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"
       ROLE: "{{ role }}"
     namespace: openshift-machine-api
-
+    tags:    
+    - machinesets
+- object: Cluster Autoscaling
+  content:
+  - name: ClusterAutoscaler
+    file: "{{ inventory_dir }}/../manifests/clusterautoscaler.yaml"
+    tags:
+    - autoscaling
+  - name: "MachineAutoscaler zone {{ cloudregion }}a"
+    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}a"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
+    tags:
+    - autoscaling
+  - name: "MachineAutoscaler zone {{ cloudregion }}b"
+    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}b"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
+    tags:
+    - autoscaling
+  - name: "MachineAutoscaler zone {{ cloudregion }}c"
+    template: "{{ inventory_dir }}/../templates/machineautoscaler.yaml"
+    params_from_vars:
+      CLUSTER_ID: "{{ clusterid }}"
+      CLOUD_REGION_ZONE: "{{ cloudregion }}c"
+      ROLE: "{{ role }}"
+    namespace: openshift-machine-api
+    tags:
+    - autoscaling
+- object: Htpasswd
+  content:
+  - name: Oauth
+    template: "{{ inventory_dir }}/../templates/htprovider.yaml"
+    params_from_vars:
+      HTPASSWD_PROVIDER: my_htpasswd_provider
+      HTPASSWD_SECRET: htpass-secret
+    tags:
+    - auth
 
