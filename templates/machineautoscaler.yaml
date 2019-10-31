@@ -24,4 +24,9 @@ parameters:
 - name: ROLE
   description: "Role of Machineset applying autoscaling to. Example Value - worker"
   required: true
-                 
+#- name: MIN
+#  description: "Min number of Machines per machineset"
+#  required: true
+#- name: MAX
+#  description: "Max number of Machines per machineset"
+#  required: true

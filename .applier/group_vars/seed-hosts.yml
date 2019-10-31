@@ -2,6 +2,9 @@ clusterid: wrong
 cloudregion: wrong
 role: wrong
 amiid: wrong
+machinetype: m5.xlarge
+#min: "1"
+#max: "12"
 
 openshift_cluster_content:
 - object: Custom Machinesets
@@ -14,6 +17,7 @@ openshift_cluster_content:
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
       ROLE: "{{ role }}"
+      MACHINE_TYPE: "{{ machinetype }}"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -25,6 +29,7 @@ openshift_cluster_content:
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
       ROLE: "{{ role }}"
+      MACHINE_TYPE: "{{ machinetype }}"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -36,6 +41,7 @@ openshift_cluster_content:
       CLOUD_REGION: "{{ cloudregion }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"
       ROLE: "{{ role }}"
+      MACHINE_TYPE: "{{ machinetype }}"
     namespace: openshift-machine-api
     tags:    
     - machinesets
@@ -51,6 +57,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
       ROLE: "{{ role }}"
+#      MIN: "{{ min }}"
+#      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
@@ -60,6 +68,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
       ROLE: "{{ role }}"
+#      MIN: "{{ min }}"
+#      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
@@ -69,6 +79,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"
       ROLE: "{{ role }}"
+#      MIN: "{{ min }}"
+#      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
