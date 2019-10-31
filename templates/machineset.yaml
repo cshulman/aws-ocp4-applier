@@ -29,7 +29,7 @@ objects:
         providerSpec:
           value:
             ami:
-              id: ami-0bc59aaa7363b805d
+              id: ${AMI_ID}
             apiVersion: awsproviderconfig.openshift.io/v1beta1
             blockDevices:
             - ebs:
@@ -41,7 +41,7 @@ objects:
             deviceIndex: 0
             iamInstanceProfile:
               id: ${CLUSTER_ID}-worker-profile
-            instanceType: m4.large
+            instanceType: ${MACHINE_TYPE}
             kind: AWSMachineProviderConfig
             placement:
               availabilityZone: ${CLOUD_REGION_ZONE}
@@ -76,4 +76,7 @@ parameters:
   required: true
 - name: ROLE
   description: "Role of Machineset creating. Example Value - worker"
+  required: true
+- name: MACHINE_TYPE
+  description: "Machine type. Example Value m5.xlarge"
   required: true
