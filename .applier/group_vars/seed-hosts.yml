@@ -4,7 +4,7 @@ role: wrong
 amiid: wrong
 machinetype: wrong
 securitygroup: wrong
-iam_profile: wrong
+iamprofile: wrong
 min: "1"
 #max: "12"
 
