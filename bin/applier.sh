@@ -29,6 +29,3 @@ max_machines="12"
 
 ##Applier command for autoscaling
 ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role=} -e amiid=${ami_id} -e min=${min_machines} -e max=${max_machines} -e include_tags="autoscaling" -vvv
-
-#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role=} -e amiid=${ami_id}  -e include_tags="autoscaling" -vvv
-
