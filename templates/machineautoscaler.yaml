@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: Template
 objects:
-- apiVersion: "autoscaling.openshift.io/v1beta1"
-  kind: "MachineAutoscaler"
+- apiVersion: autoscaling.openshift.io/v1beta1
+  kind: MachineAutoscaler
   metadata:
-    name: "${ROLE}-${CLOUD_REGION_ZONE}"
+    name: ${ROLE}-${CLOUD_REGION_ZONE}
     namespace: openshift-machine-api
   spec:
-    minReplicas: 1
-    maxReplicas: 12
+    minReplicas: ${{MIN}}
+    maxReplicas: ${{MAX}}
     scaleTargetRef:
       apiVersion: machine.openshift.io/v1beta1
       kind: MachineSet
@@ -24,9 +24,9 @@ parameters:
 - name: ROLE
   description: "Role of Machineset applying autoscaling to. Example Value - worker"
   required: true
-#- name: MIN
-#  description: "Min number of Machines per machineset"
-#  required: true
-#- name: MAX
-#  description: "Max number of Machines per machineset"
-#  required: true
+- name: MIN
+  description: "Min number of Machines per machineset"
+  required: true
+- name: MAX
+  description: "Max number of Machines per machineset"
+  required: true
