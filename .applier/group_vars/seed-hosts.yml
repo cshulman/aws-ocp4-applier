@@ -2,8 +2,10 @@ clusterid: wrong
 cloudregion: wrong
 role: wrong
 amiid: wrong
-machinetype: m5.xlarge
-#min: "1"
+machinetype: wrong
+securitygroup: wrong
+iam_profile: wrong
+min: "1"
 #max: "12"
 
 openshift_cluster_content:
@@ -18,6 +20,9 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
       ROLE: "{{ role }}"
       MACHINE_TYPE: "{{ machinetype }}"
+      SECURITY_GROUP: "{{ securitygroup }}"
+      IAM_PROFILE: "{{ iamprofile }}"
+      PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}a"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -30,6 +35,9 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
       ROLE: "{{ role }}"
       MACHINE_TYPE: "{{ machinetype }}"
+      SECURITY_GROUP: "{{ securitygroup }}"
+      IAM_PROFILE: "{{ iamprofile }}"
+      PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}b"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -42,8 +50,11 @@ openshift_cluster_content:
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"
       ROLE: "{{ role }}"
       MACHINE_TYPE: "{{ machinetype }}"
+      SECURITY_GROUP: "{{ securitygroup }}"
+      IAM_PROFILE: "{{ iamprofile }}"
+      PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}c"
     namespace: openshift-machine-api
-    tags:    
+    tags:
     - machinesets
 - object: Cluster Autoscaling
   content:

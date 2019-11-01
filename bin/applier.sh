@@ -9,12 +9,24 @@ cluster_id=$(oc get machinesets -n openshift-machine-api -o jsonpath='{.items[0]
 # Grab cloud region
 cloud_region=$(oc get machinesets -n openshift-machine-api -o jsonpath='{.items[0].spec.template.spec.providerSpec.value.placement.region}')
 
-#hard coding for the test
+#Set following vars:
+#cluster_id=id
+#cloud_region=region
+ami_id="ami-0bc59aaa7363b805d"
+machine_role="infra"
+machine_type="m5.xlarge"
+security_group=${cluster_id}-worker-sg
+iam_profile=${cluster_id}-worker-profile
+
 
 # Run applier
 
-ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role="infra" -e amiid="ami-0bc59aaa7363b805d" -e machinetype="m5.xlarge" -e include_tags="machinesets" -vvv
 
-#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role="worker" -e amiid="ami-0bc59aaa7363b805d" -e include_tags="autoscaling" -vvv
+##Applier command for creating machineset
+ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role=} -e amiid=${ami_id} -e machinetype=${machine_type} -e securitygroup=${security_group} -e iamprofile=${iam_profile} -e include_tags="machinesets" -vvv
+
+
+##Applier command for autoscaling
+#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role=} -e amiid=${ami_id}  -e include_tags="autoscaling" -vvv
 
 

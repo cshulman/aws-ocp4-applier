@@ -40,7 +40,7 @@ objects:
               name: aws-cloud-credentials
             deviceIndex: 0
             iamInstanceProfile:
-              id: ${CLUSTER_ID}-worker-profile
+              id: ${IAM_PROFILE}
             instanceType: ${MACHINE_TYPE}
             kind: AWSMachineProviderConfig
             placement:
@@ -50,12 +50,12 @@ objects:
             - filters:
               - name: tag:Name
                 values:
-                - ${CLUSTER_ID}-worker-sg
+                - ${SECURITY_GROUP}
             subnet:
               filters:
               - name: tag:Name
                 values:
-                - ${CLUSTER_ID}-private-${CLOUD_REGION_ZONE}
+                - ${PRIVATE_SUBNET}
             tags:
             - name: kubernetes.io/cluster/${CLUSTER_ID}
               value: owned
@@ -79,4 +79,13 @@ parameters:
   required: true
 - name: MACHINE_TYPE
   description: "Machine type. Example Value m5.xlarge"
+  required: true
+- name: SECURITY_GROUP
+  description: "Security Group Name"
+  required: true
+- name: IAM_PROFILE
+  description: "IAM profile name"
+  required: true
+- name: PRIVATE_SUBNET
+  description: "Private Subnet Name"
   required: true
