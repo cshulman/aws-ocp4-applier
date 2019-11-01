@@ -68,8 +68,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}a"
       ROLE: "{{ role }}"
-#      MIN: "{{ min }}"
-#      MAX: "{{ max }}"
+      MIN: "{{ min }}"
+      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
@@ -79,8 +79,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}b"
       ROLE: "{{ role }}"
-#      MIN: "{{ min }}"
-#      MAX: "{{ max }}"
+      MIN: "{{ min }}"
+      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
@@ -90,8 +90,8 @@ openshift_cluster_content:
       CLUSTER_ID: "{{ clusterid }}"
       CLOUD_REGION_ZONE: "{{ cloudregion }}c"
       ROLE: "{{ role }}"
-#      MIN: "{{ min }}"
-#      MAX: "{{ max }}"
+      MIN: "{{ min }}"
+      MAX: "{{ max }}"
     namespace: openshift-machine-api
     tags:
     - autoscaling
