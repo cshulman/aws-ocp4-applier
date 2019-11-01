@@ -5,8 +5,8 @@ amiid: wrong
 machinetype: wrong
 securitygroup: wrong
 iamprofile: wrong
-min: 0
-max: 0
+min: "1"
+#max: "12"
 
 openshift_cluster_content:
 - object: Custom Machinesets
