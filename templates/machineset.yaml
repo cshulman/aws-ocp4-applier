@@ -7,6 +7,7 @@ objects:
   metadata: 
     labels:
       machine.openshift.io/cluster-api-cluster: ${CLUSTER_ID}
+      type: ${LABEL}
     name: ${CLUSTER_ID}-${ROLE}-${CLOUD_REGION_ZONE}
     namespace: openshift-machine-api
   spec:
@@ -88,4 +89,7 @@ parameters:
   required: true
 - name: PRIVATE_SUBNET
   description: "Private Subnet Name"
+  required: true
+- name: LABEL
+  description: "Label for machine (scheduling)"
   required: true

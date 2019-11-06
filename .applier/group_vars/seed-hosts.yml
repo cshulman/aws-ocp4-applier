@@ -7,6 +7,7 @@ securitygroup: wrong
 iamprofile: wrong
 min: wrong
 max: wrong
+label: wrong
 
 openshift_cluster_content:
 - object: Custom Machinesets
@@ -23,6 +24,7 @@ openshift_cluster_content:
       SECURITY_GROUP: "{{ securitygroup }}"
       IAM_PROFILE: "{{ iamprofile }}"
       PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}a"
+      LABEL: "{{ label }}"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -38,6 +40,7 @@ openshift_cluster_content:
       SECURITY_GROUP: "{{ securitygroup }}"
       IAM_PROFILE: "{{ iamprofile }}"
       PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}b"
+      LABEL: "{{ label }}"
     namespace: openshift-machine-api
     tags:
     - machinesets
@@ -53,6 +56,7 @@ openshift_cluster_content:
       SECURITY_GROUP: "{{ securitygroup }}"
       IAM_PROFILE: "{{ iamprofile }}"
       PRIVATE_SUBNET: "{{ clusterid }}-private-{{ cloudregion }}c"
+      LABEL: "{{ label }}"
     namespace: openshift-machine-api
     tags:
     - machinesets
