@@ -26,7 +26,7 @@ openshift_cluster_content:
     namespace: openshift-machine-api
     tags:
     - machinesets
-  - name: "MachineSet {{ role }} zone {{ cloudregion }}a"
+  - name: "MachineSet {{ role }} zone {{ cloudregion }}b"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
       AMI_ID: "{{ amiid }}"
@@ -41,7 +41,7 @@ openshift_cluster_content:
     namespace: openshift-machine-api
     tags:
     - machinesets
-  - name: "MachineSet {{ role }} zone {{ cloudregion }}a"
+  - name: "MachineSet {{ role }} zone {{ cloudregion }}c"
     template: "{{ inventory_dir }}/../templates/machineset.yaml"
     params_from_vars:
       AMI_ID: "{{ amiid }}"
