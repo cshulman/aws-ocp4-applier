@@ -4,14 +4,15 @@ metadata:
   name: "default"
 spec:
   podPriorityThreshold: -10
+  balanceSimilarNodeGroups: true
   resourceLimits:
-    maxNodesTotal: 24
+  i  maxNodesTotal: 1000
     cores:
-      min: 8
-      max: 128
+      min: 2
+      max: 1280
     memory:
       min: 4
-      max: 256
+      max: 2560
     gpus:
       - type: nvidia.com/gpu
         min: 0
