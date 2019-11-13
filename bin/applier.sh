@@ -19,14 +19,13 @@ security_group=${cluster_id}-worker-sg
 iam_profile=${cluster_id}-worker-profile
 min_machines="1"
 max_machines="12"
-machine_label="labeltest"
+
 
 # Run applier
-
 
 ##Applier command for creating machineset
 #ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e machinetype=${machine_type} -e securitygroup=${security_group} -e iamprofile=${iam_profile} -e label=${machine_label} -e include_tags="machinesets" -vvv
 
 
 ##Applier command for autoscaling
-ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e min=${min_machines} -e max=${max_machines} -e include_tags="autoscaling" -vvv
+#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e min=${min_machines} -e max=${max_machines} -e include_tags="autoscaling" -vvv
