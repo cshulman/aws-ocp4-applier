@@ -24,8 +24,12 @@ max_machines="12"
 
 
 ##Applier command for creating machineset
-ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e machinetype=${machine_type} -e securitygroup=${security_group} -e iamprofile=${iam_profile} -e include_tags="machinesets" -vvv
+#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e machinetype=${machine_type} -e securitygroup=${security_group} -e iamprofile=${iam_profile} -e include_tags="machinesets" -vvv
 
 
 ##Applier command for autoscaling
 #ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e clusterid=${cluster_id} -e cloudregion=${cloud_region} -e role=${machine_role} -e amiid=${ami_id} -e min=${min_machines} -e max=${max_machines} -e include_tags="autoscaling" -vvv
+
+#Applier for htpasswd
+#ansible-playbook -i .applier/ galaxy/openshift-applier/playbooks/openshift-cluster-seed.yml -e include_tags="auth" -vvv
+
